@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { Button } from "./ui/button";
 import {
@@ -9,6 +7,8 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "./ui/navigation-menu";
+import { Toggle } from "./ui/toggle";
+import { Menu, Moon } from "lucide-react";
 
 export default function Header() {
   const menuList: { text: string; href: string }[] = [
@@ -39,13 +39,21 @@ export default function Header() {
   ];
 
   return (
-    <header className="flex items-center justify-between py-2 px-4">
-      <div className="text-xl">
+    <div className="flex items-center justify-between w-full transition-all pb-1">
+      <div className="flex justify-center items-center text-xl">
         <Link href={"/"}>
           Blog<span className="font-semibold">Tutor</span>{" "}
         </Link>
       </div>
-      <div className="flex justify-center gap-4">
+      <Button variant={"outline"} className="md:hidden">
+        <Menu className="h-full w-full" />
+      </Button>
+      <div className="hidden md:flex justify-end items-center gap-4 ">
+        <Toggle aria-label="Darkmode" size="sm" variant="outline">
+          <Moon className="group-data-[state=on]/toggle:fill-foreground" />{" "}
+          DarkMode
+        </Toggle>
+
         <NavigationMenu>
           <NavigationMenuList>
             {menuList.map((menu) => (
@@ -65,6 +73,6 @@ export default function Header() {
 
         <Button className="cursor-pointer">Logout</Button>
       </div>
-    </header>
+    </div>
   );
 }

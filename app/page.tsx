@@ -22,7 +22,7 @@ export default function Home() {
           alt="Programming Illustration"
           width={400}
           height={400}
-          className="drop-shadow-lg drop-shadow-primary"
+          className="drop-shadow-lg drop-shadow-primary animate-slide-up"
           loading="eager"
         />
       </div>

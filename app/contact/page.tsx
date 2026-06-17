@@ -19,7 +19,7 @@ export default function Contact() {
             src="/contact-us-bro-2.svg"
             alt="Contact Image"
             fill
-            className="object-contain"
+            className="object-contain animate-shake"
           />
         </div>
         <form className="flex-1 flex flex-col items-center justify-center gap-4">

@@ -1,3 +1,4 @@
+import { getEachBlog } from "@/lib/api";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
@@ -9,12 +10,11 @@ interface BlogPostPageProps {
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { id } = await params;
-  const data = await fetch(`https://api.vercel.app/blog/${id}`);
-  const blog = await data.json();
+  // const data = await fetch(`https://api.vercel.app/blog/${id}`);
+  // const blog = await data.json();
+  const { data: blog, status } = await getEachBlog(id);
 
-  if (!data.ok) {
-    return notFound();
-  }
+  if (status === 404) notFound();
 
   return (
     <div className="flex-1 flex flex-col gap-6 mt-4">

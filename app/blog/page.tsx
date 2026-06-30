@@ -1,9 +1,11 @@
+import { getBlog } from "@/lib/api";
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function Blog() {
-  const data = await fetch("https://api.vercel.app/blog");
-  const res = await data.json();
+  // const data = await fetch("https://api.vercel.app/blog");
+  // const res = await data.json();
+  const res = await getBlog();
 
   return (
     <div className="flex flex-1 flex-col gap-6 mt-4">

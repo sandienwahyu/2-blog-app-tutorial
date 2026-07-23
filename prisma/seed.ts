@@ -7,7 +7,7 @@ async function main() {
   const posts = await res.json();
 
   await Promise.all(
-    posts.map((post) =>
+    posts.map((post: any) =>
       prisma.post.create({
         data: {
           title: post.title,

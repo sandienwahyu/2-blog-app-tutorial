@@ -81,13 +81,19 @@ export default function Dashboard() {
     }
   };
 
+  const capitalizeWords = (str: string) => {
+    return str.replace(/\b\w/g, (char) => char.toUpperCase());
+  };
+
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
   return (
     <div className="flex-1 flex flex-col h-full pt-10">
       <h1 className="text-2xl font-bold">Dashboard</h1>
-      <p className="text-lg text-foreground/60">Welcome to the dashboard!</p>
+      <p className="text-lg text-foreground/60">
+        Welcome to the dashboard, {capitalizeWords(session?.user?.name || "")}!
+      </p>
       <div className="flex-1 flex flex-col md:flex-row justify-center items-stretch gap-14">
         <div className="flex-1 flex flex-col gap-2 py-4 px-2">
           {data.map((post: any) => (

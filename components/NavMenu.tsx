@@ -18,6 +18,10 @@ import {
   navigationMenuTriggerStyle,
 } from "./ui/navigation-menu";
 import Link from "next/link";
+import { useCurrentSession } from "@/hooks/useCurrentSession";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 const menuList: { text: string; href: string }[] = [
   {
@@ -46,7 +50,20 @@ const menuList: { text: string; href: string }[] = [
   },
 ];
 
+const handleClick = async (router: AppRouterInstance | string[]) => {
+  await authClient.signOut({
+    fetchOptions: {
+      onSuccess: () => {
+        router.push("/login"); // redirect to login page
+      },
+    },
+  });
+};
+
 export function NavMobile() {
+  const router = useRouter();
+  const { session } = useCurrentSession();
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -72,7 +89,14 @@ export function NavMobile() {
           ))}
         </nav>
         <SheetFooter>
-          <Button className="cursor-pointer">Logout</Button>
+          {session && (
+            <Button
+              className="cursor-pointer"
+              onClick={() => handleClick(router)}
+            >
+              Logout
+            </Button>
+          )}
         </SheetFooter>
       </SheetContent>
     </Sheet>
@@ -80,6 +104,9 @@ export function NavMobile() {
 }
 
 export function NavDesktop() {
+  const router = useRouter();
+  const { session } = useCurrentSession();
+
   return (
     <div className="hidden md:flex justify-end items-center gap-4 ">
       <NavigationMenu>
@@ -99,7 +126,11 @@ export function NavDesktop() {
         </NavigationMenuList>
       </NavigationMenu>
 
-      <Button className="cursor-pointer">Logout</Button>
+      {session && (
+        <Button className="cursor-pointer" onClick={() => handleClick(router)}>
+          Logout
+        </Button>
+      )}
     </div>
   );
 }

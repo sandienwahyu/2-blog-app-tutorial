@@ -1,8 +1,12 @@
-"use client";
-
 import MessageForm from "@/components/MessageForm";
 import { Button } from "@/components/ui/button";
+import { Metadata } from "next";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "BlogTutor - Contact",
+  description: "This is a description",
+};
 
 export default function Contact() {
   return (

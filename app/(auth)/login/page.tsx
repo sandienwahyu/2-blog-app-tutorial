@@ -76,6 +76,12 @@ export default function LoginPage() {
   };
 
   useEffect(() => {
+    const token = document.cookie;
+    console.log("All cookies:", token);
+    console.log("Session:", session);
+  }, [session]);
+
+  useEffect(() => {
     if (session) {
       router.push("/dashboard");
     }

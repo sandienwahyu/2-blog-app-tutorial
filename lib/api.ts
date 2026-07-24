@@ -13,3 +13,9 @@ export async function getEachBlog(id: string) {
   const data = await res.json();
   return { data, status: 200 };
 }
+
+export async function getData() {
+  const res = await fetch("https://fakestoreapi.com/products");
+  if (!res.ok) throw new Error("Failed to fetch data");
+  return res.json();
+}

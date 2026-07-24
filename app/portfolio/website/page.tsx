@@ -1,10 +1,10 @@
+import { getData } from "@/lib/api";
 import Image from "next/image";
 
 export const dynamic = "force-dynamic";
 
 export default async function WebsitePage() {
-  const data = await fetch("https://fakestoreapi.com/products");
-  const res = await data.json();
+  const res = await getData();
 
   return (
     <>

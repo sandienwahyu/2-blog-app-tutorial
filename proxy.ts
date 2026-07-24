@@ -5,6 +5,14 @@ const publicPages = ["/login", "/register"];
 export function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
+  console.log("=== MIDDLEWARE DEBUG ===");
+  console.log("Pathname:", pathname);
+  console.log("All cookies:", request.cookies.getAll());
+  console.log(
+    "Token:",
+    request.cookies.get("better-auth.session_token")?.value,
+  );
+
   // Allow public pages
   if (publicPages.includes(pathname)) {
     return NextResponse.next();

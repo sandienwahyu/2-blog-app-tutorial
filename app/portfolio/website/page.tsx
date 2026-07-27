@@ -1,8 +1,6 @@
 import { getData } from "@/lib/api";
 import Image from "next/image";
 
-export const dynamic = "force-dynamic";
-
 export default async function WebsitePage() {
   const res = await getData();
 

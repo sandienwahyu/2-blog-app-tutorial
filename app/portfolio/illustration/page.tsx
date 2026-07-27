@@ -1,8 +1,8 @@
-import { getData } from "@/lib/api";
+import { getBlog } from "@/lib/api";
 import Image from "next/image";
 
 export default async function IllustrationPage() {
-  const res = await getData();
+  const res = await getBlog();
 
   return (
     <>
@@ -18,12 +18,12 @@ export default async function IllustrationPage() {
             <div className="w-1/2 flex flex-col gap-2 justify-center">
               <h6 className="text-lg font-semibold">{item.title}</h6>
               <p className="text-sm text-justify text-foreground/80">
-                {item.description}
+                {item.content}
               </p>
             </div>
             <div className="w-1/2 overflow-hidden relative">
               <Image
-                src={item.image}
+                src={"/website-portfolio.jpg"}
                 alt={item.title}
                 fill
                 className="object-contain rounded"
